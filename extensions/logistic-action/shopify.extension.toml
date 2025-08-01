@@ -1,0 +1,15 @@
+api_version = "2025-04"
+
+#########################################
+# Extension 1: Order Details Action
+#########################################
+[[extensions]]
+name = "Logistic Action"
+handle = "logistic-action"
+type = "ui_extension"
+
+[[extensions.targeting]]
+module = "./src/ActionExtension.jsx"
+target = "admin.order-details.action.render"
+
+

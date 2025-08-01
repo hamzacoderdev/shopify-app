@@ -1,0 +1,10 @@
+api_version = "2025-04"
+
+[[extensions]]
+name = "Book at logistic app"
+handle = "admin-action-123"
+type = "ui_extension"
+
+[[extensions.targeting]]
+target = "admin.order-index.selection-action.render"
+module = "./src/ActionExtension.jsx"
