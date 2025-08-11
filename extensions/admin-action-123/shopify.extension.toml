@@ -1,7 +1,7 @@
-api_version = "2025-04"
+api_version = "2024-10"  # ✅ Fixed: Changed from "2025-04" to "2024-10"
 
 [[extensions]]
-name = "Book at logistic app"
+name = "Book at Rushrr"
 handle = "admin-action-123"
 type = "ui_extension"
 

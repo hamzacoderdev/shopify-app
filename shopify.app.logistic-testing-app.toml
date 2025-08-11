@@ -3,7 +3,7 @@
 client_id = "0e950c1153128703e47cf026dcd8be41"
 name = "logistic-testing-app"
 handle = "logistic-testing-app"
-application_url = "https://passing-read-ww-beverly.trycloudflare.com"
+application_url = "https://inspiration-giants-arkansas-stud.trycloudflare.com"
 embedded = true
 
 [build]
@@ -25,7 +25,7 @@ api_version = "2025-07"
 scopes = "read_customers,read_orders,write_products"
 
 [auth]
-redirect_urls = ["https://passing-read-ww-beverly.trycloudflare.com/auth/callback", "https://passing-read-ww-beverly.trycloudflare.com/auth/shopify/callback", "https://passing-read-ww-beverly.trycloudflare.com/api/auth/callback"]
+redirect_urls = ["https://inspiration-giants-arkansas-stud.trycloudflare.com/auth/callback", "https://inspiration-giants-arkansas-stud.trycloudflare.com/auth/shopify/callback", "https://inspiration-giants-arkansas-stud.trycloudflare.com/api/auth/callback"]
 
 [pos]
 embedded = false

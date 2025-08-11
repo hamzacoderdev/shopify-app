@@ -784,6 +784,9 @@ export default function SetupPage() {
   const [responseMessage, setResponseMessage] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [testOrderId, setTestOrderId] = useState("5920323403859");
+  const [testResult, setTestResult] = useState(null);
+  const [testLoading, setTestLoading] = useState(false);
 
   useEffect(() => {
     const checkStoreConnection = async () => {
@@ -845,6 +848,39 @@ export default function SetupPage() {
       }
     } catch (err) {
       setResponseMessage({ type: "error", content: "Network error or server unavailable." });
+    }
+  };
+
+  const handleTestOrder = async () => {
+    if (!testOrderId.trim()) {
+      setTestResult({
+        success: false,
+        error: "Please enter a valid order ID"
+      });
+      return;
+    }
+
+    setTestLoading(true);
+    setTestResult(null);
+
+    try {
+      const res = await fetch("api/test-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderIds: [testOrderId] }),
+      });
+
+      const data = await res.json();
+      setTestResult(data);
+    } catch (err) {
+      console.error("Test error:", err);
+      setTestResult({
+        success: false,
+        error: "Failed to test order processing",
+        details: err.message
+      });
+    } finally {
+      setTestLoading(false);
     }
   };
 
@@ -972,6 +1008,75 @@ export default function SetupPage() {
               </Card>
             </div>
           </InlineStack>
+        </Layout.Section>
+
+        {/* Order Testing Section */}
+        <Layout.Section>
+          <Card>
+            <Box padding="500">
+              <BlockStack gap="400">
+                <Text variant="headingMd">🧪 Test Order Processing</Text>
+                <Divider />
+                <Text variant="bodyMd" color="subdued">
+                  Test your setup by processing a sample order. Use order ID: 5920323403859 or enter your own.
+                </Text>
+                <TextField
+                  label="Test Order ID"
+                  value={testOrderId}
+                  onChange={setTestOrderId}
+                  placeholder="Enter Shopify order ID"
+                  helpText="Enter a valid Shopify order ID to test the processing flow"
+                />
+                <Button
+                  variant="secondary"
+                  onClick={handleTestOrder}
+                  loading={testLoading}
+                  size="large"
+                >
+                  🔍 Test Order Processing
+                </Button>
+
+                {testResult && (
+                  <Box>
+                    <Banner
+                      title={testResult.success ? "✅ Test Successful!" : "❌ Test Failed"}
+                      status={testResult.success ? "success" : "critical"}
+                    >
+                      {testResult.success ? (
+                        <BlockStack gap="200">
+                          <Text variant="bodyMd">{testResult.message}</Text>
+                          {testResult.setup && (
+                            <Box>
+                              <Text variant="bodyMd" fontWeight="bold">Setup Status:</Text>
+                              <Text variant="bodyMd">• Authentication: {testResult.setup.authentication}</Text>
+                              <Text variant="bodyMd">• Shop: {testResult.setup.shop}</Text>
+                              <Text variant="bodyMd">• API Token: {testResult.setup.token}</Text>
+                              <Text variant="bodyMd">• Shopify API: {testResult.setup.shopifyApi}</Text>
+                              {testResult.setup.testOrder && (
+                                <Text variant="bodyMd">• Test Order: #{testResult.setup.testOrder.number} ({testResult.setup.testOrder.customer})</Text>
+                              )}
+                            </Box>
+                          )}
+                        </BlockStack>
+                      ) : (
+                        <BlockStack gap="200">
+                          <Text variant="bodyMd">{testResult.error}</Text>
+                          {testResult.troubleshooting && (
+                            <Box>
+                              <Text variant="bodyMd" fontWeight="bold">Troubleshooting:</Text>
+                              {testResult.troubleshooting.map((tip, index) => (
+                                <Text key={index} variant="bodyMd">• {tip}</Text>
+                              ))}
+                            </Box>
+                          )}
+                        </BlockStack>
+                      )}
+                    </Banner>
+                  </Box>
+                )}
+              </BlockStack>
+            </Box>
+          </Card>
         </Layout.Section>
 
         {/* Features Section */}
