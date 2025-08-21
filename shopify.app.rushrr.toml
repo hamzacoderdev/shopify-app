@@ -1,24 +1,24 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-client_id = "ba64b8218185a99763bc2a40367e1921"
-name = "Rushrr"
-handle = "rushrr-1"
-application_url = "https://consistently-observed-opposite-as.trycloudflare.com"
+client_id = "0852ca8aca3b00c7e150cc80db71f6d3"
+name = "rushrr"
+handle = "rushrr"
+application_url = "https://rushrr.fly.dev/"
 embedded = true
 
 [build]
-include_config_on_deploy = true
 automatically_update_urls_on_dev = true
+include_config_on_deploy = true
 
 [webhooks]
-api_version = "2024-10"  # ✅ Fixed: Changed from "2025-07" to "2024-10"
+api_version = "2024-10"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = "read_customers,read_orders,write_orders,read_products"  # ✅ Fixed: Added write_orders
+scopes = "read_customers,read_orders,read_products,write_orders"
 
 [auth]
-redirect_urls = ["https://consistently-observed-opposite-as.trycloudflare.com/auth/callback", "https://consistently-observed-opposite-as.trycloudflare.com/auth/shopify/callback", "https://consistently-observed-opposite-as.trycloudflare.com/api/auth/callback"]
+redirect_urls = ["https://rushrr.fly.dev/auth/callback", "https://rushrr.fly.dev/auth/shopify/callback", "https://rushrr.fly.dev/api/auth/callback"]
 
 [pos]
 embedded = false

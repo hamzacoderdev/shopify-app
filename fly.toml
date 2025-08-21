@@ -1,0 +1,38 @@
+# fly.toml app configuration file generated for rushrr on 2025-08-19T20:49:06+05:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'rushrr'
+primary_region = 'sin'
+
+[build]
+
+[env]
+  PORT = '3000'
+  SCOPES = 'read_orders,write_orders,write_products'
+  SHOPIFY_API_KEY = '0852ca8aca3b00c7e150cc80db71f6d3'
+  SHOPIFY_APP_URL = 'https://rushrr.fly.dev'
+
+[processes]
+  app = 'node ./dbsetup.js npm run docker-start'
+
+[[mounts]]
+  source = 'data'
+  destination = '/data'
+  auto_extend_size_threshold = 80
+  auto_extend_size_increment = '1GB'
+  auto_extend_size_limit = '10GB'
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
