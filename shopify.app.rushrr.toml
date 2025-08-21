@@ -3,7 +3,7 @@
 client_id = "ba64b8218185a99763bc2a40367e1921"
 name = "Rushrr"
 handle = "rushrr-1"
-application_url = "https://hugh-infinite-anchor-exemption.trycloudflare.com"
+application_url = "https://consistently-observed-opposite-as.trycloudflare.com"
 embedded = true
 
 [build]
@@ -18,7 +18,7 @@ api_version = "2024-10"  # ✅ Fixed: Changed from "2025-07" to "2024-10"
 scopes = "read_customers,read_orders,write_orders,read_products"  # ✅ Fixed: Added write_orders
 
 [auth]
-redirect_urls = ["https://hugh-infinite-anchor-exemption.trycloudflare.com/auth/callback", "https://hugh-infinite-anchor-exemption.trycloudflare.com/auth/shopify/callback", "https://hugh-infinite-anchor-exemption.trycloudflare.com/api/auth/callback"]
+redirect_urls = ["https://consistently-observed-opposite-as.trycloudflare.com/auth/callback", "https://consistently-observed-opposite-as.trycloudflare.com/auth/shopify/callback", "https://consistently-observed-opposite-as.trycloudflare.com/api/auth/callback"]
 
 [pos]
 embedded = false
